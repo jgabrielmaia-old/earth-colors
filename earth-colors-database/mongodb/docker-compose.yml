@@ -2,10 +2,14 @@ version: '3.9'
 
 services:
   mongodb:
+    container_name: earth_colors_database
+    environment:
+      MONGO_INITDB_DATABASE: earth_colors
     image: mongo:5.0.5
     ports:
       - 27017:27017
     volumes:
-      - ~/apps/mongo:/data/db
-      - ./init-mongodb:/docker-entrypoint-initdb.d
-      - ./init-mongodb/data/:/tmp/data
+      - ./init-mongodb:/docker-entrypoint-initdb.d/
+      - ./init-mongodb/DBScripts:/docker-entrypoint-initdb.d/DBScripts/
+    command: --bind_ip_all --replSet rs0
+      

@@ -1,7 +1,9 @@
-namespace EarthColorsApi.Repository;
-using EarthColorsApi.Models;
+namespace EarthColors.Infrastructure.Repository;
 
-public class CountriesRepository 
+using EarthColors.Domain.Entities;
+using EarthColors.Domain.Interfaces;
+
+public class CountriesRepository : ICountriesRepository
 {
     private readonly Dictionary<Guid, Country> _countries = new();
 
@@ -15,7 +17,7 @@ public class CountriesRepository
         return null;
     }
 
-    public List<Country> GetAll() => _countries.Values.ToList();
+    public IEnumerable<Country> GetAll() => _countries.Values.ToList();
 
     public void Delete(Guid id) => _countries.Remove(id);
 

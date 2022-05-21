@@ -1,12 +1,15 @@
-using EarthColorsApi.Models;
+namespace EarthColors.Infrastructure.Repository;
 
-public class VotesRepository 
+using EarthColors.Domain.Entities;
+using EarthColors.Domain.Interfaces;
+
+public class VotesRepository : IVotesRepository
 {
     private readonly Dictionary<Guid, Vote> _votes = new();
 
     public Vote GetById(Guid id) => _votes[id];
 
-    public List<Vote> GetAll() => _votes.Values.ToList();
+    public IEnumerable<Vote> GetAll() => _votes.Values.ToList();
 
     public void Delete(Guid id) => _votes.Remove(id);
 

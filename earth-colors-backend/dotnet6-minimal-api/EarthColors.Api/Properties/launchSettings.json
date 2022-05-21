@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "EarthColorsApi": {
+    "EarthColors.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

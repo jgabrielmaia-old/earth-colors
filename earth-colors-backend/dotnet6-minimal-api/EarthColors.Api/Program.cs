@@ -1,12 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
-using EarthColorsApi.Repository;
-using EarthColorsApi.Models;
+
+using EarthColors.Domain.Entities;
+using EarthColors.Domain.Interfaces;
+using EarthColors.Infrastructure.Repository;
+
 using System.Linq;  
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<CountriesRepository>();
 builder.Services.AddSingleton<VotesRepository>();
+builder.Services.Configure<MongoConnectionSettings>(
+    builder.Configuration.GetSection("EarthColorsDatabase"));
+
 
 var app = builder.Build();
 
